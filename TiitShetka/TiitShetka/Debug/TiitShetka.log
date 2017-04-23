@@ -1,0 +1,4 @@
+﻿  TiitShetka.cpp
+c:\users\a4tec\documents\visual studio 2017\projects\tiitshetka\tiitshetka\tiitshetka.cpp(382): warning C4101: k: неиспользованная локальная переменная
+  TiitShetka.vcxproj -> C:\Users\a4tec\documents\visual studio 2017\Projects\TiitShetka\Debug\TiitShetka.exe
+  TiitShetka.vcxproj -> C:\Users\a4tec\documents\visual studio 2017\Projects\TiitShetka\Debug\TiitShetka.pdb (Partial PDB)
