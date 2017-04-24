@@ -30,20 +30,25 @@ public class Scores {
         int i1=0,i2=0,Number=0;
         height1=str1.length();
         String[] info;
-        while (i1!=height1-1)
+        if (str1.equals("{}"))
         {
-           i2=Test(i1+1,str1);
-           shet++;
-           i1=i2;
+            info=new String[1];
+            info[0]="empty";
         }
-        i1=i2=0;
-        info=new String[shet];
-        while (i1!=height1-1)
-        {
-            i2=Test(i1+1, str1);
-            info[Number]=str1.substring(i1+1,i2);
-            i1=i2;
-            Number++;
+        else {
+            while (i1 != height1 - 1) {
+                i2 = Test(i1 + 1, str1);
+                shet++;
+                i1 = i2;
+            }
+            i1 = i2 = 0;
+            info = new String[shet];
+            while (i1 != height1 - 1) {
+                i2 = Test(i1 + 1, str1);
+                info[Number] = str1.substring(i1 + 1, i2);
+                i1 = i2;
+                Number++;
+            }
         }
         return info;
     }
@@ -75,7 +80,9 @@ public class Scores {
                     str+=',';
             }
         }
-        str=str.substring(0,str.length()-1);
+        if (str.length()!=0) {
+            str = str.substring(0, str.length() - 1);
+        }
         return str;
     }
 
@@ -89,8 +96,10 @@ public class Scores {
             for (int g=i+1;g<NumberofScores;g++)
             {
                 Betastr+=Difference(Score[i],Score[g]);
+                if (Difference(Score[i],Score[g]).length()!=0)
                 Betastr+=',';
                 Betastr+=Difference(Score[g],Score[i]);
+                if (Difference(Score[g],Score[i]).length()!=0)
                 Betastr+=',';
             }
         }
@@ -141,7 +150,7 @@ public class Scores {
         }
         else
         {
-            for (int i=Start+1;i<Len;i++)
+            for (int i=Start;i<Len;i++)
             {
                 if (str.charAt(i)==',' || str.charAt(i)=='}')
                 {
@@ -151,5 +160,25 @@ public class Scores {
             }
         }
         return End;
+    }
+
+    public static int Check (String str)
+    {
+     int Stop=0;
+     String[] Checking;
+     int len,shet;
+     Checking=Cutting(str);
+     len=Checking.length;
+     for (int i=0;i<len-1;i++) {
+         shet = 0;
+         for (int j = i + 1; j < len; j++) {
+             if (Checking[i].equals(Checking[j]) == false) {
+                shet++;
+             }
+         }
+         if (shet!=len-1-i)
+             Stop=58;
+     }
+     return Stop;
     }
 }
