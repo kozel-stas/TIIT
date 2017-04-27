@@ -4,6 +4,7 @@ package com.company;
  * Created by a4tec on 23.04.2017.
  */
 public class Scores {
+
     public static String[] Score,dopScore,CutStr1,CutStr2;
     public static String Outstr,Betastr;
     public static int NumberofScores=0,Powerstr1,Powerstr2;
@@ -72,7 +73,18 @@ public class Scores {
             for (int g=0;g<Powerstr2;g++)
             {
                 if (CutStr1[i].equals(CutStr2[g])==false)
-                    shet++;
+                    if (CutStr1[i].charAt(0)=='{' && CutStr2[g].charAt(0)=='{')
+                    {
+                        if (RekSet(CutStr1[i],CutStr2[g])==1)
+                            shet++;
+                    }
+                    else {
+                        if (CutStr1[i].charAt(0) == '<' && CutStr2[g].charAt(0) == '<') {
+                            if (Korteziki(CutStr1[i],CutStr2[g])==1)
+                                shet++;
+                        } else
+                            shet++;
+                    }
             }
             if (shet==Powerstr2)
             {
@@ -103,6 +115,7 @@ public class Scores {
                 Betastr+=',';
             }
         }
+        if (Betastr.length()>1)
         Betastr=Betastr.substring(0,Betastr.length()-1);
         Betastr+='}';
         CutStr1=Cutting(Betastr);
@@ -115,8 +128,20 @@ public class Scores {
             shet=0;
             for (int g=0;g<NumberofScores;g++)
             {
-                if (CutStr1[i].equals(Score[g])==false)
-                    shet++;
+                if (CutStr1[i].equals(Score[g])==false) {
+                    if (CutStr1[i].charAt(0)=='{' && CutStr2[g].charAt(0)=='{')
+                    {
+                        if (RekSet(CutStr1[i],CutStr2[g])==1)
+                            shet++;
+                    }
+                    else {
+                        if (CutStr1[i].charAt(0) == '<' && CutStr2[g].charAt(0) == '<') {
+                            if (Korteziki(CutStr1[i], CutStr2[g]) == 1)
+                                shet++;
+                        } else
+                            shet++;
+                    }
+                }
             }
             if (shet==NumberofScores)
             {
@@ -152,7 +177,7 @@ public class Scores {
         {
             for (int i=Start;i<Len;i++)
             {
-                if (str.charAt(i)==',' || str.charAt(i)=='}')
+                if (str.charAt(i)==',' || str.charAt(i)=='}' || str.charAt(i)=='>')
                 {
                     End=i;
                     break;
@@ -181,4 +206,78 @@ public class Scores {
      }
      return Stop;
     }
+
+    public static int RekSet(String str1,String str2)
+    {
+        int sh;
+        int ans=0;
+        int PowStr1,PowStr2;
+        String[] a,b;
+        a=Cutting(str1);
+        PowStr1=a.length;
+        b=Cutting(str2);
+        PowStr2=b.length;
+        for (int i=0;i<PowStr1;i++)
+        {
+            sh=0;
+            for (int g=0;g<PowStr2;g++)
+            {
+                if (a[i].equals(b[g])==false) {
+                    if (a[i].charAt(0) == '{' && b[g].charAt(0) == '{') {
+                        if (RekSet(a[i], b[g])==1)
+                            sh++;
+                    } else {
+                        if (a[i].charAt(0) == '<' && b[g].charAt(0) == '<') {
+                            if (Korteziki(a[i],b[g])==1)
+                                sh++;
+                        } else {
+                            sh++;
+                        }
+                    }
+                }
+            }
+            if (sh==PowStr2)
+            {
+                ans=1;
+                break;
+            }
+        }
+        return ans;
+    }
+
+    public static int Korteziki (String str1, String str2)
+    {
+        int ans=0;
+        int sh=0;
+        String[] a,b;
+        a=Cutting(str1);
+        b=Cutting(str2);
+        for (int i=0;i<2;i++)
+        {
+            sh=0;
+            if (a[i].equals(b[i])==false)
+            {
+                if (a[i].charAt(0) == '{' && b[i].charAt(0) == '{') {
+                        if (RekSet(a[i],b[i])==0)
+                            sh++;
+                } else {
+                    if (a[i].charAt(0) == '<' && b[i].charAt(0) == '<') {
+                        if (Korteziki(a[i],b[i])==0)
+                            sh++;
+                    }
+                }
+            }
+            else
+            {
+                sh++;
+            }
+            if (sh==0)
+            {
+                ans=1;
+                break;
+            }
+        }
+        return ans;
+    }
+
 }
