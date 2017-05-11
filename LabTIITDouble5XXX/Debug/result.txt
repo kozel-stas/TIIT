@@ -1,0 +1,43 @@
+Test 01 
+* ok * 
+Test 02 
+* ok * 
+Test 03 
+* ok * 
+Test 04 
+* ok * 
+Test 05 
+* ok * 
+Test 06 
+* ok * 
+Test 07 
+* ok * 
+Test 08 
+* ok * 
+Test 09 
+* ok * 
+Test 10 
+* ok * 
+Test 11 
+* ok * 
+Test 12 
+* ok * 
+Test 13 
+* ok * 
+Test 14 
+Time Limit
+* Облом * Отсутствует файл 'maze.out' (maze.out)
+Test 15 
+* ok * 
+Test 16 
+* ok * 
+Test 17 
+* ok * 
+Test 18 
+Time Limit
+* Облом * Отсутствует файл 'maze.out' (maze.out)
+Test 19 
+Time Limit
+* Облом * Отсутствует файл 'maze.out' (maze.out)
+Test 20 
+* ok * 
